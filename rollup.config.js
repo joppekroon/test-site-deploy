@@ -6,7 +6,7 @@ rimraf.sync('docs');
 const pkg = require('./package.json');
 
 export default {
-  input: 'src/scripts/app.js',
+  input: 'site/src/scripts/app.js',
   output: {
     file: 'docs/scripts/app.js',
     format: 'es'
