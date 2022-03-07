@@ -1,0 +1,1 @@
+{"version":3,"file":"app.js","sources":["../../site/src/scripts/app.js"],"sourcesContent":["import { foo } from './foo.js';\n\ndocument.querySelector('#version').innerText = \"{{version}}\";\n\nconsole.log(`Hello ${foo()}`);"],"names":["document","querySelector","innerText","console","log"],"mappings":"AAEAA,SAASC,cAAc,YAAYC,UAAY,QAE/CC,QAAQC,IAAI"}
