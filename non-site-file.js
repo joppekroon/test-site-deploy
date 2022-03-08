@@ -1,0 +1,1 @@
+console.log("This file represents the code to update {{version}}");

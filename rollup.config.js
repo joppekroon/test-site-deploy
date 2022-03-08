@@ -5,6 +5,7 @@ import { folderInput } from 'rollup-plugin-folder-input';
 import rimraf from 'rimraf';
 
 rimraf.sync('docs');
+rimraf.sync('public');
 
 const pkg = require('./package.json');
 
@@ -20,8 +21,8 @@ export default [
     plugins: [
       replace({
         delimiters: ['{{', '}}'],
-        version: pkg.version,
         preventAssignment: true,
+        version: pkg.version,
       })
     ],
   },
@@ -36,6 +37,20 @@ export default [
     plugins: [
       folderInput(),
       nodeResolve(),
+    ],
+  },
+  {
+    input: 'non-site-file.js',
+    output: {
+      file: 'public/compiled.js',
+      format: 'es',
+    },
+    plugins: [
+      replace({
+        delimiters: ['{{\\s?', '\\s?}}'],
+        preventAssignment: true,
+        version: pkg.version,
+      }),
     ],
   }
 ]

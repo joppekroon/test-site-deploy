@@ -6,8 +6,8 @@ on:
 
 jobs:
 
-  build:
-    name: Build
+  deploy:
+    name: Deploy updates
     runs-on: ubuntu-latest
 
     steps:
@@ -22,13 +22,24 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
-
-  gh-pages-deploy:
-    name: Deploying to gh-pages
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
+      - name: Check version
+        id: version-check
+        uses: Endbug/version-check@v2
+        with:
+          diff-search: true
+      - name: Commit updates
+        if: steps.version-check.outputs.changed == 'true'
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git commit -m "Publish updates v${{ steps.version-check.outputs.version }}"
+          git tag v${{ steps.version-check.outputs.version }}
+      - name: Publish changes
+        if: steps.version-check.outputs.changed == 'true'
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tags: true
       - name: Deploy site
         uses: peaceiris/actions-gh-pages@v3
         with:
