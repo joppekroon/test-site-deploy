@@ -5,13 +5,14 @@ on:
     branches: [ main ]
 
 jobs:
+
   build:
     name: Build
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout branch
-      uses: actions/checkout@v3
+        uses: actions/checkout@v3
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -25,10 +26,12 @@ jobs:
   gh-pages-deploy:
     name: Deploying to gh-pages
     needs: build
+    runs-on: ubuntu-latest
+
     steps:
-       - name: Deploy site
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs
-        destination_dir: docs
+      - name: Deploy site
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          destination_dir: docs
