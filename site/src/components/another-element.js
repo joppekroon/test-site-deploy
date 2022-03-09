@@ -13,7 +13,7 @@ export class AnotherElement extends LitElement {
   }
 
   render() {
-    return html`<p>Bump it, ${this.yell}!</p>`;
+    return html`<p>Scream it, <b>${this.yell}!</b></p>`;
   }
 }
 customElements.define('another-element', AnotherElement);
