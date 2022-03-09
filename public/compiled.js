@@ -1,1 +1,1 @@
-console.log("This file represents the code to update 1.2.1");
+console.log("This file represents the code to update 1.2.2");
