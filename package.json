@@ -9,7 +9,7 @@
   "scripts": {
     "build": "npm run javascript && npm run static",
     "javascript": "rollup -c",
-    "static": "cpx site/src/static/** docs"
+    "static": "cpx \"site/src/static/**\" docs"
   },
   "repository": {
     "type": "git",
